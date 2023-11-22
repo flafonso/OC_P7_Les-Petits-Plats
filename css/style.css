@@ -1,10 +1,19 @@
 :root {
   --yellow: #ffd15b;
+  --main-bg-color: #EDEDED;
+  --grey-text: #7A7A7A;
 }
 
 body {
-  font-family: "Manrope", sans-serif;
   margin: 0;
+  background-color: var(--main-bg-color);
+  font-family: "Manrope", sans-serif;
+}
+
+main {
+  width: 100%;
+  padding: 0 7vw;
+  box-sizing: border-box;
 }
 
 header {
@@ -16,8 +25,6 @@ header {
   background: url(/assets/images/header_background.png) center center / 100%
     100% no-repeat;
   text-align: center;
-  font-family: "Anton", sans-serif;
-  color: var(--yellow);
 }
 header .logo {
   position: absolute;
@@ -33,7 +40,10 @@ header .logo {
   align-items: center;
 }
 .header__content h1 {
+  font-family: "Anton", sans-serif;
+  color: var(--yellow);
   font-size: 3vw;
+  font-weight: 400;
 }
 
 
@@ -57,8 +67,8 @@ header .logo {
   height: 0.9vw;
   margin-right: 4.5vw;
   background:
-    linear-gradient(45deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 43%,#7A7A7A 45%,#7A7A7A 55%,rgba(0,0,0,0) 57%,rgba(0,0,0,0) 100%),
-    linear-gradient(135deg, transparent 0%,transparent 43%,#7A7A7A 45%,#7A7A7A 55%,transparent 57%,transparent 100%);
+    linear-gradient(45deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 43%,var(--grey-text) 45%,var(--grey-text) 55%,rgba(0,0,0,0) 57%,rgba(0,0,0,0) 100%),
+    linear-gradient(135deg, transparent 0%,transparent 43%,var(--grey-text) 45%,var(--grey-text) 55%,transparent 57%,transparent 100%);
 }
 .main-search-button {
   position: relative;
@@ -71,4 +81,66 @@ header .logo {
     center center / 1.9vw 1.9vw no-repeat;
   border: none;
   border-radius: 10px;
+}
+
+
+
+.recipe-section {
+  margin-top: 100px;
+}
+
+
+.recipe-card {
+  width: max(26.4vw, 300px);
+  aspect-ratio: 0.52 / 1;
+  font-size: max(1vw, 12px);
+  border-radius: 20px;
+  background-color: white;
+  filter: drop-shadow(0px 4px 34px rgba(0, 0, 0, 0.08));
+}
+.recipe-card__img, .recipe-card__img img {
+  width: 100%;
+  aspect-ratio: 1.52 / 1;
+  border-radius: 20px 20px 0 0;
+}
+.recipe-card__img img {
+  object-fit: cover;
+}
+
+.recipe-card__content {
+  padding: max(1.7vw, 19px);
+}
+
+.recipe-card__name {
+  margin: 0;
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-size: max(1.25vw, 16px);
+}
+
+.recipe-card__subtitle {
+  margin-top: max(2.2vw, 25px);
+  margin-bottom: max(1vw, 11px);
+  font-size: max(0.8vw, 10px);
+  font-weight: bold;
+  color: var(--grey-text);
+}
+
+.recipe-card__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: max(1.4vw, 15px) 0;
+}
+.recipe-card__ingredient {
+  width: 50%;
+}
+.recipe-card__ingredient p {
+  margin: 0;
+}
+.recipe-card__ingredient .name {
+  font-weight: 500;
+}
+.recipe-card__ingredient .quantity {
+  color: var(--grey-text);
+  font-weight: 400;
 }
