@@ -1,0 +1,44 @@
+:root {
+  --yellow: #FFD15B;
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+  margin: 0;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  aspect-ratio: 2.16 / 1;
+  background: url(/assets/images/header_background.png) center center / 100% 100% no-repeat;
+  text-align: center;
+  font-family: "Anton", sans-serif;
+  color: var(--yellow);
+}
+header .logo {
+  position: absolute;
+  width: 14vw;
+  aspect-ratio: 8.28 / 1;
+  top: 3.5vw;
+  left: 5vw;
+}
+.header__content {
+  max-width: 56vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header__content h1 {
+  font-size: 3vw;
+}
+.main-search-bar, #main-search-bar {
+  width: 100%;
+  aspect-ratio: 13.25 / 1;
+  padding-left: 2.4vw;
+  font-family: "Manrope", sans-serif;
+  border: none;
+  border-radius: 10px;
+}
