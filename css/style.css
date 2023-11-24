@@ -1,7 +1,8 @@
 :root {
   --yellow: #ffd15b;
+  --grey: #7A7A7A;
+  --light-grey: #C6C6C6;
   --main-bg-color: #EDEDED;
-  --grey-text: #7A7A7A;
 }
 
 body {
@@ -61,6 +62,8 @@ header .logo {
   font-family: "Manrope", sans-serif;
   border: none;
   border-radius: 10px;
+  color: var(--grey);
+  outline : none;
 }
 .main-search-bar input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none;
@@ -68,8 +71,8 @@ header .logo {
   height: 0.9vw;
   margin-right: 4.5vw;
   background:
-    linear-gradient(45deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 43%,var(--grey-text) 45%,var(--grey-text) 55%,rgba(0,0,0,0) 57%,rgba(0,0,0,0) 100%),
-    linear-gradient(135deg, transparent 0%,transparent 43%,var(--grey-text) 45%,var(--grey-text) 55%,transparent 57%,transparent 100%);
+    linear-gradient(45deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 43%,var(--grey) 45%,var(--grey) 55%,rgba(0,0,0,0) 57%,rgba(0,0,0,0) 100%),
+    linear-gradient(135deg, transparent 0%,transparent 43%,var(--grey) 45%,var(--grey) 55%,transparent 57%,transparent 100%);
 }
 .main-search-button {
   position: relative;
@@ -100,7 +103,7 @@ header .logo {
   justify-content: space-between;
   align-items: center;
 }
-.filters-section__dropdown {
+.filters-section__filters {
   width: 48vw;
   display: flex;
   justify-content: space-between;
@@ -111,6 +114,92 @@ header .logo {
   font-size: max(1.5vw, 16px);
   font-weight: 400;
 }
+
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  aspect-ratio: 0.6 / 1;
+  font-size: max(1vw, 12px);
+  border-radius: 10px;
+  background-color: white;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.dropdown__btn {
+  padding: 17px 16px;
+  appearance: none;
+  display: flex;
+  align-items: center;
+  gap: 4.1vw;
+  font-size: max(1.1vw, 14px);
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+  background-color: transparent;
+}
+.dropdown__arrow {
+  width: max(0.91vw, 10px);
+  aspect-ratio: 2.17 / 1;
+  background: url(/assets/icons/arrow_angle.svg) center center / 100% 100%;
+  transform: rotate(180deg);
+}
+.dropdown__content {
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.dropdown__search {
+  position: relative;
+}
+.dropdown__search-icon {
+  position: absolute;
+  top: max(0.7vw, 4px);
+  right: max(0.7vw, 4px);
+  width: max(1vw, 12px);
+  height: max(1vw, 12px);
+  background: url('data:image/svg+xml;utf8,<svg id="search" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="9.5" stroke="rgb(122, 122, 122)"/><line x1="18.3536" y1="18.6464" x2="27.3536" y2="27.6464" stroke="rgb(122, 122, 122)"/></svg>')
+    center center / 100% 100% no-repeat;
+  z-index: 2;
+}
+.dropdown__search input[type="search"] {
+  padding: 0;
+  padding-left: 0.5vw;
+  margin: 0;
+  width: calc(100% - 2px);
+  height: max(2.5vw, 20px);
+  font-size: max(1vw, 12px);
+  border: 1px solid var(--light-grey);
+  color: var(--grey);
+  outline : none;
+  filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0));
+}
+.dropdown__search input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  width: max(0.55vw, 6px);
+  height: max(0.55vw, 6px);
+  margin-right: max(2.2vw, 20px);
+  background:
+    linear-gradient(45deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 43%,var(--grey) 45%,var(--grey) 55%,rgba(0,0,0,0) 57%,rgba(0,0,0,0) 100%),
+    linear-gradient(135deg, transparent 0%,transparent 43%,var(--grey) 45%,var(--grey) 55%,transparent 57%,transparent 100%);
+}
+.dropdown__options {
+  padding: 0;
+  margin: 0;
+  margin-top: max(1.7vw, 15px);
+  list-style-type: none;
+  overflow-y: auto;
+}
+.dropdown__options li {
+  height: max(2.2vw, 25px);
+  display: flex;
+  align-items: center;
+  /* background-color: var(--yellow); */
+}
+
 
 
 
@@ -124,7 +213,6 @@ header .logo {
 }
 
 .recipe-card {
-  /* position: relative; */
   width: max(26.4vw, 300px);
   aspect-ratio: 0.52 / 1;
   font-size: max(1vw, 12px);
@@ -167,7 +255,7 @@ header .logo {
   margin-bottom: max(1vw, 11px);
   font-size: max(0.8vw, 10px);
   font-weight: bold;
-  color: var(--grey-text);
+  color: var(--grey);
 }
 
 .recipe-card__list {
@@ -185,6 +273,6 @@ header .logo {
   font-weight: 500;
 }
 .recipe-card__ingredient .quantity {
-  color: var(--grey-text);
+  color: var(--grey);
   font-weight: 400;
 }
