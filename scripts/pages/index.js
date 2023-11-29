@@ -4,8 +4,8 @@ import { recipes } from "../data/recipes.js";
 
 
 function init() {
-  initAllDropdown();
   const recipesModel = recipesTemplates(recipes);
+  initAllDropdown(recipesModel);
   recipesModel.displayRecipes();
 }
 

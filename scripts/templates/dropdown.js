@@ -11,13 +11,8 @@ class DdComponents {
 }
 
 const ddListEl = Array.from(document.querySelectorAll(".dropdown"));
-const ddComponentsLst = ddListEl.map(
-  (dropdownEl) => new DdComponents(dropdownEl)
-);
-console.log("ddComponentsLst", ddComponentsLst);
 
 function openDropdown(ddCmpts) {
-  console.log("j'ai cliquer");
   // Little change of dropdown style when it's open
   ddCmpts.ddEl.classList.toggle("dropdown--open");
   // Show or hide options content
@@ -37,18 +32,41 @@ function calcDropWidth() {
   });
 }
 
-function initAllDropdown() {
+function fillDropdowns(allTags) {
+  for (let i = 0; i < 3; i++) {
+    const lstTagsEl = allTags[i].map((tag) => {
+      const liEl = document.createElement("li");
+      liEl.textContent = tag
+      return liEl;
+    });
+    ddListEl[i].querySelector(".dropdown__options").append(...lstTagsEl);
+  }
+}
+
+function initAllDropdown(recipesModel) {
   calcDropWidth();
   window.addEventListener("resize", calcDropWidth);
+
+  fillDropdowns([
+    recipesModel.uniqIngrTag,
+    recipesModel.uniqAppTag,
+    recipesModel.uniqUstTag
+  ]);
+
+  const ddComponentsLst = ddListEl.map(
+    (dropdownEl) => new DdComponents(dropdownEl)
+  );
 
   ddComponentsLst.forEach((ddCmpts) => {
     ddCmpts.ddBtn.addEventListener("click", () => {
       openDropdown(ddCmpts);
     });
-    console.log("ddCmpts.ddOptions", ddCmpts.ddOptions);
-    console.log("ddCmpts.ddOptionLst", ddCmpts.ddOptionLst);
+    // console.log("ddCmpts.ddOptions", ddCmpts.ddOptions);
+    // console.log("ddCmpts.ddOptionLst", ddCmpts.ddOptionLst);
     ddCmpts.ddOptionLst.forEach((option) =>
-      option.addEventListener("click", () => option.classList.toggle("selected"))
+      option.addEventListener("click", () =>
+        option.classList.toggle("selected")
+      )
     );
   });
 }
