@@ -36,7 +36,7 @@ function fillDropdowns(allTags) {
   for (let i = 0; i < 3; i++) {
     const lstTagsEl = allTags[i].map((tag) => {
       const liEl = document.createElement("li");
-      liEl.textContent = tag
+      liEl.textContent = tag;
       return liEl;
     });
     ddListEl[i].querySelector(".dropdown__options").append(...lstTagsEl);
