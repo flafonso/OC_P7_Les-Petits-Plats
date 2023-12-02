@@ -189,11 +189,13 @@ header .logo {
     linear-gradient(45deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 43%,var(--grey) 45%,var(--grey) 55%,rgba(0,0,0,0) 57%,rgba(0,0,0,0) 100%),
     linear-gradient(135deg, transparent 0%,transparent 43%,var(--grey) 45%,var(--grey) 55%,transparent 57%,transparent 100%);
 }
+/* ____________________ Options list style ____________________ */
 .dropdown__options {
+  flex: 1 1 0;
   position: relative;
   padding: 0;
   margin: 0;
-  margin-top: max(1.7vw, 15px);
+  margin-top: max(0.8vw, 7px);
   list-style-type: none;
   overflow-y: auto;
 }
@@ -204,23 +206,62 @@ header .logo {
   align-items: center;
   cursor: pointer;
 }
+.dropdown__selected-options::-webkit-scrollbar,
 .dropdown__options::-webkit-scrollbar {
   position: absolute;
   right: 0;
   width: 4px;
   z-index: 10;
 }
+.dropdown__selected-options::-webkit-scrollbar-track,
 .dropdown__options::-webkit-scrollbar-track {
   background: transparent;
 }
+.dropdown__selected-options::-webkit-scrollbar-thumb,
 .dropdown__options::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 25px;
 }
+.dropdown__selected-options,
 .dropdown__options {
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.5) transparent;
 }
+/* ___ Selected options list style ___ */
+.dropdown__selected-options {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  margin-top: max(0.8vw, 7px);
+  /* flex: 1 1 0; */
+  /* min-height: fit-content; */
+  max-height: 4.8vw;
+  list-style-type: none;
+  overflow-y: auto;
+}
+.dropdown__selected-options li {
+  display: none;
+  padding: 0 16px;
+  min-height: max(2.2vw, 25px);
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  background-color: var(--yellow);
+}
+.dropdown__selected-options li:hover {
+  font-weight: bold;
+}
+.dropdown__selected-options li:hover .unselect-btn {
+  width: 1.2vw;
+  height: 1.2vw;
+  background: url("../assets/icons/close_option.svg") center center / 100% 100% no-repeat;
+}
+
+.dropdown__selected-options li.selected {
+  display: flex;
+}
+/* ____________________  ____________________ */
 
 
 /* __ Click modifications __ */
@@ -230,7 +271,9 @@ header .logo {
 .dropdown__arrow--rotate {
   transform: none;
 }
-.dropdown__options li.selected,
+.dropdown__options li.selected {
+  display: none;
+}
 .dropdown__options li:hover {
   background-color: var(--yellow);
 }
@@ -293,6 +336,11 @@ header .logo {
   font-size: max(0.8vw, 10px);
   font-weight: bold;
   color: var(--grey);
+}
+
+.recipe-card__recipe  {
+  max-height: 6.6vw;
+  overflow: hidden;
 }
 
 .recipe-card__list {

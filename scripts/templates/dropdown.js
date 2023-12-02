@@ -5,8 +5,53 @@ class DdComponents {
     this.ddArrow = dropdownEl.querySelector(".dropdown__arrow");
     this.ddContent = dropdownEl.querySelector(".dropdown__content");
     this.ddSearch = dropdownEl.querySelector(".dropdown__search");
+    this.ddSelctOptions = dropdownEl.querySelector(
+      ".dropdown__selected-options"
+    );
     this.ddOptions = dropdownEl.querySelector(".dropdown__options");
-    this.ddOptionLst = Array.from(dropdownEl.querySelectorAll("li"));
+    // this.ddOptionLst = Array.from(dropdownEl.querySelectorAll("li"));
+    this.ddOptionLst = this.ddOptions.childNodes;
+    if (this.ddBtn.firstElementChild.textContent === "Appareils") {
+      this.initSelctOptions();
+    }
+  }
+
+  initSelctOptions() {
+    console.log("___ INIT pour : ", this.ddEl);
+    this.ddOptionLst.forEach((option) => {
+      console.log("option", option, option.nodeType);
+      if (option.nodeType !== 3) {
+        const selctOption = document.createElement("li");
+        // selctOption.className = "selected";
+        selctOption.innerHTML = `
+            ${option.textContent}<div class="unselect-btn"></div>
+        `;
+        selctOption
+          .querySelector(".unselect-btn")
+          .addEventListener("click", () =>
+            selctOption.classList.remove("selected")
+          );
+        this.ddSelctOptions.append(selctOption);
+        // Créez un MutationObserver pour cette paire d'éléments
+        let observer = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            observer.disconnect();
+            if (mutation.attributeName === "class") {
+              let targetElement =
+                mutation.target === option ? selctOption : option;
+              targetElement.className = mutation.target.className;
+            }
+            // Commencez à observer les deux éléments
+            observer.observe(option, { attributes: true });
+            observer.observe(selctOption, { attributes: true });
+          });
+        });
+
+        // Commencez à observer les deux éléments
+        observer.observe(option, { attributes: true });
+        observer.observe(selctOption, { attributes: true });
+      }
+    });
   }
 }
 
@@ -43,6 +88,10 @@ function fillDropdowns(allTags) {
   }
 }
 
+function selectOption(optionName) {
+  console.log("optionName", optionName);
+}
+
 function initAllDropdown(recipesModel) {
   calcDropWidth();
   window.addEventListener("resize", calcDropWidth);
@@ -50,13 +99,14 @@ function initAllDropdown(recipesModel) {
   fillDropdowns([
     recipesModel.uniqIngrTag,
     recipesModel.uniqAppTag,
-    recipesModel.uniqUstTag
+    recipesModel.uniqUstTag,
   ]);
 
   const ddComponentsLst = ddListEl.map(
     (dropdownEl) => new DdComponents(dropdownEl)
   );
 
+  // pourquoi pas faire une fonction init() dans mon object DdCoponents ?
   ddComponentsLst.forEach((ddCmpts) => {
     ddCmpts.ddBtn.addEventListener("click", () => {
       openDropdown(ddCmpts);
@@ -64,9 +114,10 @@ function initAllDropdown(recipesModel) {
     // console.log("ddCmpts.ddOptions", ddCmpts.ddOptions);
     // console.log("ddCmpts.ddOptionLst", ddCmpts.ddOptionLst);
     ddCmpts.ddOptionLst.forEach((option) =>
-      option.addEventListener("click", () =>
-        option.classList.toggle("selected")
-      )
+      option.addEventListener("click", () => {
+        option.classList.add("selected");
+        // selectOption(option.textContent);
+      })
     );
   });
 }
