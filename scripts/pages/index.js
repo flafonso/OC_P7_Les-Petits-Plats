@@ -9,7 +9,7 @@ function init() {
   initAllDropdown(recipesData);
 
   const filtRecipes = filterRecipes(recipesData)
-  // displayRecipes(filtRecipes);
+  displayRecipes(filtRecipes);
 }
 
 

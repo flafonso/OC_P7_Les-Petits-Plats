@@ -11,9 +11,7 @@ class DdComponents {
     this.ddOptions = dropdownEl.querySelector(".dropdown__options");
     // this.ddOptionLst = Array.from(dropdownEl.querySelectorAll("li"));
     this.ddOptionLst = this.ddOptions.childNodes;
-    if (this.ddBtn.firstElementChild.textContent === "Appareils") {
-      this.initSelctOptions();
-    }
+    this.initSelctOptions();
   }
 
   initSelctOptions() {
@@ -22,7 +20,6 @@ class DdComponents {
       console.log("option", option, option.nodeType);
       if (option.nodeType !== 3) {
         const selctOption = document.createElement("li");
-        // selctOption.className = "selected";
         selctOption.innerHTML = `
             ${option.textContent}<div class="unselect-btn"></div>
         `;
@@ -32,7 +29,7 @@ class DdComponents {
             selctOption.classList.remove("selected")
           );
         this.ddSelctOptions.append(selctOption);
-        // Créez un MutationObserver pour cette paire d'éléments
+        // Create a MutationObserver for a pair of elements
         let observer = new MutationObserver((mutations) => {
           mutations.forEach((mutation) => {
             observer.disconnect();
@@ -41,13 +38,13 @@ class DdComponents {
                 mutation.target === option ? selctOption : option;
               targetElement.className = mutation.target.className;
             }
-            // Commencez à observer les deux éléments
+            // Start observing the two elements
             observer.observe(option, { attributes: true });
             observer.observe(selctOption, { attributes: true });
           });
         });
 
-        // Commencez à observer les deux éléments
+        // Start observing the two elements
         observer.observe(option, { attributes: true });
         observer.observe(selctOption, { attributes: true });
       }
@@ -114,10 +111,7 @@ function initAllDropdown(recipesModel) {
     // console.log("ddCmpts.ddOptions", ddCmpts.ddOptions);
     // console.log("ddCmpts.ddOptionLst", ddCmpts.ddOptionLst);
     ddCmpts.ddOptionLst.forEach((option) =>
-      option.addEventListener("click", () => {
-        option.classList.add("selected");
-        // selectOption(option.textContent);
-      })
+      option.addEventListener("click", () => option.classList.add("selected"))
     );
   });
 }
