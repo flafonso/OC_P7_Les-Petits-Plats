@@ -241,7 +241,9 @@ header .logo {
   overflow-y: auto;
 }
 .dropdown__selected-options li {
-  display: none;
+  /* If I choose invisible lists as my solution
+  display: none; */
+  display: flex;
   padding: 0 16px;
   min-height: max(2.2vw, 25px);
   justify-content: space-between;
@@ -258,8 +260,32 @@ header .logo {
   background: url("../assets/icons/close_option.svg") center center / 100% 100% no-repeat;
 }
 
+/* If I choose invisible lists as my solution
 .dropdown__selected-options li.selected {
   display: flex;
+} */
+
+.selected-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.selected-tags > div {
+  /* If I choose invisible lists as my solution
+  display: none; */
+  display: flex;
+  align-items: center;
+  gap: max(3.8vw, 20px);
+  padding: 17px 16px;
+  width: fit-content;
+  font-size: max(1.1vw, 14px);
+  border-radius: 10px;
+  background-color: var(--yellow);
+}
+.selected-tags > div .unselect-btn {
+  width: 1vw;
+  height: 1vw;
+  background: url("../assets/icons/close_tag.svg") center center / 100% 100% no-repeat;
 }
 /* ____________________  ____________________ */
 

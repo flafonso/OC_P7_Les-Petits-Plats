@@ -1,6 +1,7 @@
 import { recipes } from "../data/recipes.js";
 import { getRecipesData, filterRecipes } from "../data/dataManagement.js";
 import { displayRecipes } from "../templates/recipe.js";
+// import { initAllDropdown } from "../templates/dropdown_with_observer.js";
 import { initAllDropdown } from "../templates/dropdown.js";
 
 
