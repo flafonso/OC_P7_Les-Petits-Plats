@@ -65,9 +65,9 @@ function initAllDropdown(recipesModel) {
   window.addEventListener("resize", () => calcDropWidth(allDropdownEl));
 
   // Set dropdown options for each dropdown element
-  setDropdownOptions(allDropdownEl[0], recipesModel.uniqIngrTag);
-  setDropdownOptions(allDropdownEl[1], recipesModel.uniqAppTag);
-  setDropdownOptions(allDropdownEl[2], recipesModel.uniqUstTag);
+  setDropdownOptions(allDropdownEl[0], recipesModel.ingrTags);
+  setDropdownOptions(allDropdownEl[1], recipesModel.appTags);
+  setDropdownOptions(allDropdownEl[2], recipesModel.ustTags);
 
   // Add click event listener to open dropdown
   allDropdownEl.forEach((dropdownEl) => {

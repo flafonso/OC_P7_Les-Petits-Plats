@@ -4,8 +4,17 @@ function filterRecipes(recipesData) {
   return recipesData;
 }
 
+function refineTagList(rawTagList) {
+  let tagList = [...new Set(rawTagList)];
+
+  tagList = tagList.map((tag) => {
+    return tag[0].toUpperCase() + tag.toLowerCase().slice(1);
+  });
+  return tagList.sort();
+}
+
 function getRecipesData(recipes) {
-  const [recipeItems, ingrTag, appTag, ustTag] =
+  const [recipeItems, rawIngrTags, rawAppTags, rawUstTags] =
     recipes.reduce(
       (acc, recipe) => {
         acc[0].push(Recipe.create(recipe));
@@ -16,11 +25,11 @@ function getRecipesData(recipes) {
       },
       [[], [], [], []]
     );
-  const uniqIngrTag = [...new Set(ingrTag)];
-  const uniqAppTag = [...new Set(appTag)];
-  const uniqUstTag = [...new Set(ustTag)];
+  const ingrTags = refineTagList(rawIngrTags);
+  const appTags = refineTagList(rawAppTags);
+  const ustTags = refineTagList(rawUstTags);
 
-  return { recipeItems, uniqIngrTag, uniqAppTag, uniqUstTag };
+  return { recipeItems, ingrTags, appTags, ustTags };
 }
 
 export { getRecipesData, filterRecipes };
