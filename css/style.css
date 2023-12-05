@@ -24,7 +24,7 @@ header {
   align-items: center;
   width: 100vw;
   aspect-ratio: 2.16 / 1;
-  background: url(/assets/images/header_background.png) center center / 100%
+  background: url(/assets/images/header_background.webp) center center / 100%
     100% no-repeat;
   text-align: center;
 }
