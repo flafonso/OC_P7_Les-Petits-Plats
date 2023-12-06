@@ -1,7 +1,7 @@
 import { Recipe } from "../model/Recipe.js";
 
 function filterRecipes(recipesData) {
-  return recipesData;
+  return recipesData.recipeItems;
 }
 
 function refineTagList(rawTagList) {
