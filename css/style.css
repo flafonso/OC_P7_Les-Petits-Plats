@@ -9,8 +9,17 @@ body {
   margin: 0;
   background-color: var(--main-bg-color);
   font-family: "Manrope", sans-serif;
-  /* overflow: hidden; */
 }
+/* ::-webkit-scrollbar {
+  width: 10px;
+} */
+/* ::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 25px;
+} */
 
 main {
   width: 100%;
@@ -37,7 +46,7 @@ header .logo {
   left: 5vw;
 }
 .header__content {
-  max-width: 56vw;
+  width: clamp(300px, 66.25vw, 954px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,11 +60,11 @@ header .logo {
 
 /* CSS rules for the main search bar */
 .main-search-bar {
-  display: flex;
-  align-items: center;
+  display: block;
+  /* align-items: center; */
 }
 .main-search-bar,.main-search-bar input[type="search"] {
-  width: calc(100% + 3.5vw);
+  width: 100%;
   aspect-ratio: 13.25 / 1;
 }
 .main-search-bar input[type="search"] {
@@ -76,16 +85,18 @@ header .logo {
     linear-gradient(135deg, transparent 0%,transparent 43%,var(--grey) 45%,var(--grey) 55%,transparent 57%,transparent 100%);
 }
 .main-search-button {
-  position: relative;
-  z-index: 1;
-  right: 3.5vw;
   padding: 0;
-  width: 3.5vw;
-  height: 3.5vw;
+  width: clamp(16px, 3.62vw, 52px);
+  height: clamp(16px, 3.62vw, 52px);
+  position: relative;
+  float: right;
+  top: clamp(-62px, -4.3vw, -19px);
+  right: 0.69vw;
   background: #1B1B1B url('data:image/svg+xml;utf8,<svg id="search" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="9.5" stroke="white"/><line x1="18.3536" y1="18.6464" x2="27.3536" y2="27.6464" stroke="white"/></svg>')
-    center center / 1.9vw 1.9vw no-repeat;
+  center center / 1.9vw 1.9vw no-repeat;
   border: none;
   border-radius: 10px;
+  z-index: 1;
   transition:  .25s;
 }
 .main-search-button:hover {
@@ -131,6 +142,7 @@ header .logo {
   background-color: white;
   box-sizing: border-box;
   z-index: 1;
+  /* transition: 500ms ease-in-out; */
 }
 .dropdown__btn {
   padding: 17px 16px;
@@ -149,6 +161,7 @@ header .logo {
   aspect-ratio: 2.17 / 1;
   background: url(/assets/icons/arrow_angle.svg) center center / 100% 100%;
   transform: rotate(180deg);
+  transition: 400ms ease-in-out;
 }
 .dropdown__content {
   height: clamp(125px, 18.2vw, 265px);
@@ -220,7 +233,7 @@ header .logo {
 }
 .dropdown__selected-options::-webkit-scrollbar-thumb,
 .dropdown__options::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 25px;
 }
 .dropdown__selected-options,
