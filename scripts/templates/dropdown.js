@@ -1,3 +1,5 @@
+import { toUpperCaseFirst } from "../utils/string.js";
+
 function openDropdown(dropdownEl) {
   // Little change of dropdown style when it's open
   dropdownEl.classList.toggle("dropdown--open");
@@ -45,7 +47,7 @@ function setDropdownOptions(dropdownEl, tagLst) {
   // Create list item elements for tags
   const lstTagsEl = tagLst.map((tag) => {
     const liEl = document.createElement("li");
-    liEl.textContent = tag;
+    liEl.textContent = toUpperCaseFirst(tag);
     liEl.addEventListener("click", (e) =>
       selectOption(dropdownEl, e.currentTarget)
     );
@@ -65,9 +67,9 @@ function initAllDropdown(recipesModel) {
   window.addEventListener("resize", () => calcDropWidth(allDropdownEl));
 
   // Set dropdown options for each dropdown element
-  setDropdownOptions(allDropdownEl[0], recipesModel.ingrTags);
-  setDropdownOptions(allDropdownEl[1], recipesModel.appTags);
-  setDropdownOptions(allDropdownEl[2], recipesModel.ustTags);
+  setDropdownOptions(allDropdownEl[0], recipesModel.allIngredients);
+  setDropdownOptions(allDropdownEl[1], recipesModel.allAppliance);
+  setDropdownOptions(allDropdownEl[2], recipesModel.allUstensils);
 
   // Add click event listener to open dropdown
   allDropdownEl.forEach((dropdownEl) => {

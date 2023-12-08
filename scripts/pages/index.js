@@ -7,6 +7,7 @@ import { initAllDropdown } from "../templates/dropdown.js";
 
 function init() {
   const recipesData = getRecipesData(recipes);
+  console.log(recipesData.recipeItems);
   initAllDropdown(recipesData);
 
   const filtRecipes = filterRecipes(recipesData)

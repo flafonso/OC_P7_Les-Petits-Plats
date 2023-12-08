@@ -1,37 +1,25 @@
 class Recipe {
-  constructor(
-    id,
-    image,
-    name,
-    servings,
-    ingredients,
-    time,
-    description,
-    appliance,
-    ustensils
-  ) {
-    this.id = id;
-    this.image = image;
-    this.name = name;
-    this.servings = servings;
-    this.ingredients = ingredients;
-    this.time = time;
-    this.description = description;
-    this.appliance = appliance;
-    this.ustensils = ustensils;
-  }
-  static create(data) {
-    return new Recipe(
-      data.id,
-      data.image,
-      data.name,
-      data.servings,
-      data.ingredients,
-      data.time,
-      data.description,
-      data.appliance,
-      data.ustensils
-    );
+  constructor(data) {
+    this.id = data.id;
+    this.image = data.image;
+    this.name = data.name;
+    this.servings = data.servings;
+    this.ingredients = data.ingredients;
+    this.time = data.time;
+    this.description = data.description;
+    this.appliance = data.appliance;
+    this.ustensils = data.ustensils;
+
+    this.lowerIngredients = [...data.ingredients.map((content) => content.ingredient.toLowerCase()),];
+    this.lowerAppliance = data.appliance.toLowerCase();
+    this.lowerUstensils = data.ustensils.map((ustensil) => ustensil.toLowerCase());
+    this.allRecipeWords = [
+      ...this.lowerIngredients,
+      this.lowerAppliance,
+      ...this.lowerUstensils,
+      ...this.description.match(/\b\w+\b/g).map((word) => word.toLowerCase())
+    ];
+    console.log("allRecipeWords", this.allRecipeWords);
   }
 
   get src() {
@@ -41,7 +29,7 @@ class Recipe {
   get domList() {
     const listEl = document.createElement("div");
     listEl.className = "recipe-card__list";
-    this.ingredients.forEach(element => {
+    this.ingredients.forEach((element) => {
       const ingredientEl = document.createElement("div");
       ingredientEl.className = "recipe-card__ingredient";
 
