@@ -13,13 +13,7 @@ class Recipe {
     this.lowerIngredients = [...data.ingredients.map((content) => content.ingredient.toLowerCase()),];
     this.lowerAppliance = data.appliance.toLowerCase();
     this.lowerUstensils = data.ustensils.map((ustensil) => ustensil.toLowerCase());
-    this.allRecipeWords = [
-      ...this.lowerIngredients,
-      this.lowerAppliance,
-      ...this.lowerUstensils,
-      ...this.description.match(/\b\w+\b/g).map((word) => word.toLowerCase())
-    ];
-    console.log("allRecipeWords", this.allRecipeWords);
+    this.lowerDescription = data.description.toLowerCase();
   }
 
   get src() {

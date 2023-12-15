@@ -10,16 +10,6 @@ body {
   background-color: var(--main-bg-color);
   font-family: "Manrope", sans-serif;
 }
-/* ::-webkit-scrollbar {
-  width: 10px;
-} */
-/* ::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 25px;
-} */
 
 main {
   width: 100%;
@@ -61,7 +51,6 @@ header .logo {
 /* CSS rules for the main search bar */
 .main-search-bar {
   display: block;
-  /* align-items: center; */
 }
 .main-search-bar,.main-search-bar input[type="search"] {
   width: 100%;
@@ -253,8 +242,6 @@ header .logo {
   overflow-y: auto;
 }
 .dropdown__selected-options li {
-  /* If I choose invisible lists as my solution
-  display: none; */
   display: flex;
   padding: 0 16px;
   min-height: clamp(27px, 2.5vw, 35px);
@@ -272,33 +259,27 @@ header .logo {
   background: url("../assets/icons/close_option.svg") center center / 100% 100% no-repeat;
 }
 
-/* If I choose invisible lists as my solution
-.dropdown__selected-options li.selected {
-  display: flex;
-} */
-
 .selected-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
 }
 .selected-tags > div {
-  /* If I choose invisible lists as my solution
-  display: none; */
   display: flex;
   align-items: center;
-  /* gap: clamp(47px, 4.1vw, 60px); */
   gap: clamp(31px, 2.7vw, 40px);
   padding: clamp(13px, 1.18vw, 17px) clamp(12px, 1.1vw, 16px);
   width: fit-content;
   font-size: clamp(12px, 1vw, 14px);
   border-radius: 10px;
   background-color: var(--yellow);
+  cursor: default;
 }
 .selected-tags > div .unselect-btn {
   width: clamp(12px, 1vw, 14px);
   height: clamp(12px, 1vw, 14px);
   background: url("../assets/icons/close_tag.svg") center center / 100% 100% no-repeat;
+  cursor: pointer;
 }
 /* ____________________  ____________________ */
 

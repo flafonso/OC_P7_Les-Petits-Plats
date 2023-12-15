@@ -1,27 +1,20 @@
-import { Recipe } from "../model/Recipe.js";
 
-function filterRecipes(recipesData) {
-  return recipesData.recipeItems;
-}
-
-function getRecipesData(recipes) {
-  const [recipeItems, allRawIngredients, allRawAppliance, allRawUstensils] =
-    recipes.reduce(
+function extractOptions(recipesFind) {
+  const [ rawIngredients, rawAppliances, rawUstensils] =
+  recipesFind.reduce(
       (acc, recipe) => {
-        const recipeModel = new Recipe(recipe);
-        acc[0].push(recipeModel);
-        acc[1].push(...recipeModel.lowerIngredients);
-        acc[2].push(recipeModel.lowerAppliance);
-        acc[3].push(...recipeModel.lowerUstensils);
+        acc[0].push(...recipe.lowerIngredients);
+        acc[1].push(recipe.lowerAppliance);
+        acc[2].push(...recipe.lowerUstensils);
         return acc;
       },
-      [[], [], [], []]
+      [[], [], []]
     );
-  const allIngredients = [...new Set(allRawIngredients)];
-  const allAppliance = [...new Set(allRawAppliance)];
-  const allUstensils = [...new Set(allRawUstensils)];
+  const ingredients = [...new Set(rawIngredients)].sort();
+  const appliances = [...new Set(rawAppliances)].sort();
+  const ustensils = [...new Set(rawUstensils)].sort();
 
-  return { recipeItems, allIngredients, allAppliance, allUstensils };
+  return { ingredients, appliances, ustensils };
 }
 
-export { getRecipesData, filterRecipes };
+export { extractOptions };

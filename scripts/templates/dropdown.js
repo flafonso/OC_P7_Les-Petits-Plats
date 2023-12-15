@@ -1,4 +1,6 @@
 import { toUpperCaseFirst } from "../utils/string.js";
+import { searchOptions, filterRecipes } from "../data/search.js";
+import { filters } from "../pages/index.js";
 
 function openDropdown(dropdownEl) {
   // Little change of dropdown style when it's open
@@ -8,8 +10,8 @@ function openDropdown(dropdownEl) {
   dropdownEl.querySelector(".dropdown__content").classList.toggle("dropdown__content--visible");
 }
 
-function calcDropWidth(allDropdownEl) {
-  allDropdownEl.forEach((dropdownEl) => {
+function calcDropWidth(dropdownList) {
+  dropdownList.forEach((dropdownEl) => {
     const dropdownBtnWidth = dropdownEl
       .querySelector(".dropdown__btn")
       .offsetWidth.toString();
@@ -18,65 +20,65 @@ function calcDropWidth(allDropdownEl) {
 }
 
 // Sets up the "unselect-btn" button functionality for a dropdown selected-option or selected-tag
-function setUnselectBtn(parentOption, currentChild, otherChild) {
+function setUnselectBtn(parentOption, currentChild, otherChild, type) {
   currentChild.querySelector(".unselect-btn").addEventListener("click", () => {
+    filters[type] = filters[type].filter((option) => option !== parentOption.textContent.toLowerCase());
     parentOption.classList.remove("selected");
     currentChild.parentNode.removeChild(currentChild);
     otherChild.parentNode.removeChild(otherChild);
+    filterRecipes();
   });
 }
 
 // Hides the option clicked and creates the associated elements in .dropdown__selected-options and .filters-section__tags
-function selectOption(dropdownEl, option) {
-  option.classList.add("selected");
+function createSelectOption(dropdownEl, optionEl, type) {
+  optionEl.classList.add("selected");
   // selctOption corresponds to the selected items visible in the drop-down menu
   const selctOption = document.createElement("li");
   // selctTag corresponds to the selected items visible outside the drop-down menu
   const selctTag = document.createElement("div");
   selctOption.innerHTML = selctTag.innerHTML = `
-      ${option.textContent}<div class="unselect-btn"></div>
+      ${optionEl.textContent}<div class="unselect-btn"></div>
   `;
-  setUnselectBtn(option, selctOption, selctTag);
-  setUnselectBtn(option, selctTag, selctOption);
+  setUnselectBtn(optionEl, selctOption, selctTag, type);
+  setUnselectBtn(optionEl, selctTag, selctOption, type);
   dropdownEl.querySelector(".dropdown__selected-options").append(selctOption);
   document.querySelector(".selected-tags").append(selctTag);
+  // console.log("filters", filters);
 }
 
 // Sets the dropdown options for a specific dropdown element with a specific tag list
-function setDropdownOptions(dropdownEl, tagLst) {
+function setDropdownOptions(dropdownEl, optionsList, type) {
+  const dropdownOptionsEl = dropdownEl.querySelector(".dropdown__options");
+  dropdownOptionsEl.innerHTML = "";
   // Create list item elements for tags
-  const lstTagsEl = tagLst.map((tag) => {
+  const lstOptionsEl = optionsList.map((option) => {
     const liEl = document.createElement("li");
-    liEl.textContent = toUpperCaseFirst(tag);
-    liEl.addEventListener("click", (e) =>
-      selectOption(dropdownEl, e.currentTarget)
-    );
+    liEl.textContent = toUpperCaseFirst(option);
+    liEl.addEventListener("click", (e) => {
+      filters[type].push(option);
+      filterRecipes();
+      createSelectOption(dropdownEl, e.currentTarget, type);
+    });
     return liEl;
   });
-  dropdownEl.querySelector(".dropdown__options").append(...lstTagsEl);
+  dropdownOptionsEl.append(...lstOptionsEl);
 }
 
+
 // Initialize all dropdowns
-function initAllDropdown(recipesModel) {
-  // Get all dropdown elements
-  const allDropdownEl = Array.from(document.querySelectorAll(".dropdown"));
-
-  // Calculate dropdown width
-  calcDropWidth(allDropdownEl);
-  // Update dropdown width on window resize
-  window.addEventListener("resize", () => calcDropWidth(allDropdownEl));
-
-  // Set dropdown options for each dropdown element
-  setDropdownOptions(allDropdownEl[0], recipesModel.allIngredients);
-  setDropdownOptions(allDropdownEl[1], recipesModel.allAppliance);
-  setDropdownOptions(allDropdownEl[2], recipesModel.allUstensils);
+function initDropdown(dropdownEl, optionsList, type) {
+  // Set dropdown options
+  setDropdownOptions(dropdownEl, optionsList, type);
+  dropdownEl.querySelector(".dropdown__search input").addEventListener("input", (e) => {
+    const optionsFind = searchOptions(optionsList, e.currentTarget.value.toLowerCase());
+    setDropdownOptions(dropdownEl, optionsFind, type);
+  });
 
   // Add click event listener to open dropdown
-  allDropdownEl.forEach((dropdownEl) => {
-    dropdownEl.querySelector(".dropdown__btn").addEventListener("click", () => {
-      openDropdown(dropdownEl);
-    });
+  dropdownEl.querySelector(".dropdown__btn").addEventListener("click", () => {
+    openDropdown(dropdownEl);
   });
 }
 
-export { initAllDropdown };
+export { initDropdown, calcDropWidth };

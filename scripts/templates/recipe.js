@@ -1,5 +1,3 @@
-
-
 function displayRecipes(recipes) {
   const recipeSectionEl = document.querySelector(".recipe-section");
   recipeSectionEl.innerHTML = "";
