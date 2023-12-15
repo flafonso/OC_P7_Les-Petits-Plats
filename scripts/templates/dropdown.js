@@ -49,21 +49,33 @@ function createSelectOption(dropdownEl, optionEl, type) {
 // Sets the dropdown options for a specific dropdown element with a specific tag list
 function setDropdownOptions(dropdownEl, optionsList, type) {
   const dropdownOptionsEl = dropdownEl.querySelector(".dropdown__options");
-  dropdownOptionsEl.innerHTML = "";
+  if (dropdownOptionsEl.children.length !== 0) {
+    Array.from(dropdownOptionsEl.children).forEach((child) => {
+      if (!child.classList.contains("selected")) {
+        dropdownOptionsEl.removeChild(child);
+      }
+    });
+  }
   // Create list item elements for tags
-  const lstOptionsEl = optionsList.map((option) => {
+  const lstOptionsEl = optionsList.filter((option) => !filters[type].includes(option)).map((option) => {
     const liEl = document.createElement("li");
     liEl.textContent = toUpperCaseFirst(option);
     liEl.addEventListener("click", (e) => {
       filters[type].push(option);
-      filterRecipes();
       createSelectOption(dropdownEl, e.currentTarget, type);
+      filterRecipes();
     });
     return liEl;
   });
   dropdownOptionsEl.append(...lstOptionsEl);
 }
 
+function setDropdownBtn(dropdownEl) {
+  // Add click event listener to open dropdown
+  dropdownEl.querySelector(".dropdown__btn").addEventListener("click", () => {
+    openDropdown(dropdownEl);
+  });
+}
 
 // Initialize all dropdowns
 function initDropdown(dropdownEl, optionsList, type) {
@@ -73,11 +85,6 @@ function initDropdown(dropdownEl, optionsList, type) {
     const optionsFind = searchOptions(optionsList, e.currentTarget.value.toLowerCase());
     setDropdownOptions(dropdownEl, optionsFind, type);
   });
-
-  // Add click event listener to open dropdown
-  dropdownEl.querySelector(".dropdown__btn").addEventListener("click", () => {
-    openDropdown(dropdownEl);
-  });
 }
 
-export { initDropdown, calcDropWidth };
+export { initDropdown, calcDropWidth, setDropdownBtn };

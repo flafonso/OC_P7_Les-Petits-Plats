@@ -10,6 +10,7 @@ class Recipe {
     this.appliance = data.appliance;
     this.ustensils = data.ustensils;
 
+    this.lowerName = data.name.toLowerCase();
     this.lowerIngredients = [...data.ingredients.map((content) => content.ingredient.toLowerCase()),];
     this.lowerAppliance = data.appliance.toLowerCase();
     this.lowerUstensils = data.ustensils.map((ustensil) => ustensil.toLowerCase());
