@@ -44,7 +44,6 @@ function createSelectOption(dropdownEl, optionEl, type) {
   setUnselectBtn(optionEl, selctTag, selctOption, type);
   dropdownEl.querySelector(".dropdown__selected-options").append(selctOption);
   document.querySelector(".selected-tags").append(selctTag);
-  // console.log("filters", filters);
 }
 
 // Sets the dropdown options for a specific dropdown element with a specific tag list

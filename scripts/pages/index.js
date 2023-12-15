@@ -25,7 +25,6 @@ function init() {
   const recipeItems = recipes.map((recipe) => new Recipe(recipe));
   const dropdownList = document.querySelectorAll(".dropdown");
 
-  console.log("[0] recipesFind", recipesFind.list);
   recipesFind.list = recipeItems;
 
   // Calculate dropdown width
@@ -34,11 +33,9 @@ function init() {
   window.addEventListener("resize", () => calcDropWidth(dropdownList));
 
   main(recipeItems, dropdownList);
-  console.log("[1] recipesFind", recipesFind.list);
   document
   .querySelector(".main-search-bar input").addEventListener("input", () => {
     main(recipeItems, dropdownList);
-    console.log("[2] recipesFind", recipesFind.list);
     });
 }
 
