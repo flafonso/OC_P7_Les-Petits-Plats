@@ -1,5 +1,5 @@
 
-# OC_P7 : Les Petits Plats
+# OC_P7 : Les Petits Plats (algo-functional)
 
 Ce projet consiste à créer un site web de recettes de cuisine avec un moteur de recherche performant et fluide. Le site utilise un fichier JSON contenant 50 recettes et affiche les résultats de la recherche en temps réel. Le site permet également de filtrer les recettes par tags (appareil, ustensile ou ingrédient).
 
