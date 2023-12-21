@@ -30,8 +30,9 @@
             type="search"
             name="main-search-bar"
             placeholder="Rechercher une recette, un ingrédient, ..."
+            aria-label="rechercher dans les recettes"
           />
-          <button type="submit" class="main-search-button" aria-label="search button"></button>
+          <button type="submit" class="main-search-button" aria-label="recherche principale"></button>
         </nav>
       </div>
     </header>
@@ -46,7 +47,7 @@
             </button>
             <div class="dropdown__content">
               <div class="dropdown__search">
-                <input type="search" placeholder="" />
+                <input type="search" placeholder="" aria-label="rechercher un ingrédient"/>
                 <span class="dropdown__search-icon"></span>
               </div>
               <ul class="dropdown__selected-options"></ul>
@@ -61,7 +62,7 @@
             </button>
             <div class="dropdown__content">
               <div class="dropdown__search">
-                <input type="search" placeholder="" />
+                <input type="search" placeholder="" aria-label="rechercher un appareil"/>
                 <span class="dropdown__search-icon"></span>
               </div>
               <ul class="dropdown__selected-options"></ul>
@@ -76,7 +77,7 @@
             </button>
             <div class="dropdown__content">
               <div class="dropdown__search">
-                <input type="search" placeholder="" />
+                <input type="search" placeholder="" aria-label="rechercher un ustensile"/>
                 <span class="dropdown__search-icon"></span>
               </div>
               <ul class="dropdown__selected-options"></ul>
