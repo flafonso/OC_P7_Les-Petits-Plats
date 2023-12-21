@@ -1,99 +1,101 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <link href="css/style.css" rel="stylesheet" type="text/css" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="assets/icons/favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
-  <script type="module" src="scripts/pages/index.js" defer></script>
-  <title>Les Petits Plats</title>
-</head>
-<body>
-  <header>
-    <img class="logo" src="assets/icons/logo_les_petits_plats.svg"/>
-    <div class="header__content">
-      <h1>CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</h1>
-      <nav class="main-search-bar">
-        <input type="search" name="main-search-bar" placeholder="Rechercher une recette, un ingrédient, ..." />
-        <button type="submit" class="main-search-button"></button>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="filters-section">
-      <div class="filters-section__filters">
-        <div id="ingredients" class="dropdown">
-          <button class="dropdown__btn">
-            <span>Ingrédients</span>
-            <div class="dropdown__arrow"></div>
-          </button>
-          <div class="dropdown__content">
-            <div class="dropdown__search">
-              <input type="search" placeholder="">
-              <span class="dropdown__search-icon"></span>
-            </div>
-            <ul class="dropdown__selected-options">
-            </ul>
-            <ul class="dropdown__options">
-            </ul>
-          </div>
-        </div>
-
-        <div id="appliances" class="dropdown">
-          <button class="dropdown__btn">
-            <span>Appareils</span>
-            <div class="dropdown__arrow"></div>
-          </button>
-          <div class="dropdown__content">
-            <div class="dropdown__search">
-              <input type="search" placeholder="">
-              <span class="dropdown__search-icon"></span>
-            </div>
-            <ul class="dropdown__selected-options">
-            </ul>
-            <ul class="dropdown__options">
-            </ul>
-          </div>
-        </div>
-
-        <div id="ustensils" class="dropdown">
-          <button class="dropdown__btn">
-            <span>Ustensiles</span>
-            <div class="dropdown__arrow"></div>
-          </button>
-          <div class="dropdown__content">
-            <div class="dropdown__search">
-              <input type="search" placeholder="">
-              <span class="dropdown__search-icon"></span>
-            </div>
-            <ul class="dropdown__selected-options">
-            </ul>
-            <ul class="dropdown__options">
-            </ul>
-          </div>
-        </div>
-
+  <head>
+    <meta charset="UTF-8" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="assets/icons/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Les Petits Plats</title>
+  </head>
+  <body>
+    <header>
+      <img
+        class="logo"
+        src="assets/icons/logo_les_petits_plats.svg"
+        alt="Logo du site"
+      />
+      <div class="header__content">
+        <h1>
+          CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET
+          DÉLICIEUSES
+        </h1>
+        <nav class="main-search-bar">
+          <input
+            type="search"
+            name="main-search-bar"
+            placeholder="Rechercher une recette, un ingrédient, ..."
+          />
+          <button type="submit" class="main-search-button" aria-label="search button"></button>
+        </nav>
       </div>
+    </header>
 
-      <div class="filters-section__recipes-found">
-        Recettes
-      </div>
-    </section>
-    <section class="selected-tags">
-    </section>
+    <main>
+      <section class="filters-section">
+        <div class="filters-section__filters">
+          <div id="ingredients" class="dropdown">
+            <button class="dropdown__btn">
+              <span>Ingrédients</span>
+              <span class="dropdown__arrow"></span>
+            </button>
+            <div class="dropdown__content">
+              <div class="dropdown__search">
+                <input type="search" placeholder="" />
+                <span class="dropdown__search-icon"></span>
+              </div>
+              <ul class="dropdown__selected-options"></ul>
+              <ul class="dropdown__options"></ul>
+            </div>
+          </div>
 
-    <section class="recipe-section">
-    </section>
+          <div id="appliances" class="dropdown">
+            <button class="dropdown__btn">
+              <span>Appareils</span>
+              <span class="dropdown__arrow"></span>
+            </button>
+            <div class="dropdown__content">
+              <div class="dropdown__search">
+                <input type="search" placeholder="" />
+                <span class="dropdown__search-icon"></span>
+              </div>
+              <ul class="dropdown__selected-options"></ul>
+              <ul class="dropdown__options"></ul>
+            </div>
+          </div>
 
-    <br>
-    <br>
-    <br>
-    <br>
-  </main>
+          <div id="ustensils" class="dropdown">
+            <button class="dropdown__btn">
+              <span>Ustensiles</span>
+              <span class="dropdown__arrow"></span>
+            </button>
+            <div class="dropdown__content">
+              <div class="dropdown__search">
+                <input type="search" placeholder="" />
+                <span class="dropdown__search-icon"></span>
+              </div>
+              <ul class="dropdown__selected-options"></ul>
+              <ul class="dropdown__options"></ul>
+            </div>
+          </div>
+        </div>
 
-</body>
+        <div class="filters-section__recipes-found">Recettes</div>
+      </section>
+      <section class="selected-tags"></section>
+
+      <section class="recipe-section"></section>
+
+      <br />
+      <br />
+      <br />
+      <br />
+    </main>
+    <script type="module" src="scripts/pages/index.js"></script>
+  </body>
 </html>
