@@ -34,9 +34,13 @@ function init() {
 
   main(recipesFind.list);
   document
-  .querySelector(".main-search-bar input").addEventListener("input", () => {
-    // Search for recipes that match the search text
-    recipesFind.list = searchRecipes(recipeItems);
+  .querySelector(".main-search-bar input").addEventListener("input", (e) => {
+    if (e.currentTarget.value.length >= 3) {
+      // Search for recipes that match the search text
+      recipesFind.list = searchRecipes(recipeItems);
+    } else {
+      recipesFind.list = recipeItems;
+    }
     filterRecipes();
     });
 }
